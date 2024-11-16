@@ -1,0 +1,16 @@
+name: linger_enviroment
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10.14
+  - bedtools=2.30
+  - jupyter
+  - jupyterlab
+  - ipywidgets
+  - ipykernel
+  - ipyparallel
+  - notebook
+  - pip
+  - pip:
+      - LingerGRN==1.97
