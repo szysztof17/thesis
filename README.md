@@ -29,3 +29,46 @@ python BLEvaluator.py --config config-files/buenrostro18_config.yaml --epr --auc
 
 Figures for the thesis are generated using scripts found in `figures/scripts`.
 
+### CellOracle wrapper
+### 1. Code & Config Files
+
+These are the files that *run* the pipeline:
+
+* **`run_celloracle.py`**: The main Python script you execute.
+* **`pbmc.yml`** (or your config file): The YAML file you pass to the Python script.
+* **`cicero_for_celloracle.R`**: This R script is called by the Python script. It must be placed in: `<BASE_DIR>/src/R/cicero_for_celloracle.R`.
+
+### 2. Data Files
+
+These are the *inputs* defined inside your `[dataset].yml` config. The pipeline's logic will determine *which* of these it needs based on your settings (like `USE_ATAC_SEQ` or `PREPROCESSED_ADATA_PATH`).
+
+#### Always Needed
+
+The pipeline uses these to process the scRNA-seq data and build the final network with respect to BEELINE's requirements:
+* **TF List File**: (`config["tf_list_file"]`)
+    * *Example from pbmc.yaml config:* `/home/kl467102/Beeline-238/inputs/hHep/human-tfs.csv`
+* **Network File**: (`config["network_file"]`)
+    * *Example from pbmc.yaml config:* `/home/kl467102/string_dir/9606_protein_links_gene_names_combined_score_700.csv`
+
+#### scRNA-seq Data (Needs one of these)
+
+Due to the individual nature of eachd ataset, we recommend passing a preprocessed `.h5ad` file
+
+* **If `PREPROCESSED_ADATA_PATH` is set** (skipping preprocessing):
+    * **Processed AnnData File**: (`config["PREPROCESSED_ADATA_PATH"]`)
+        * *Example:* `/home/kl467102/thesis/BEELINE/inputs/pbmc10k/pbmc10k_STRING12_2000TFs/adata.h5ad`
+* **If `PREPROCESSED_ADATA_PATH` is `null`** (running from raw):
+    * **Raw H5 File**: (`config["RAW_INPUT_DIRS"]["H5"]`)
+        * *Example:* `data/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5`
+
+#### scATAC-seq Data (Only if `USE_ATAC_SEQ: True`)
+
+These are only needed if you're building a custom GRN and are **not** providing an intermediate file (like `CUSTOM_GRN`).
+
+* **Chromosome Sizes**: (`config["RAW_INPUT_DIRS"]["CHROM_SIZES"]`)
+    * *Example:* `data/ARC/refdata-cellranger-arc-GRCh38-2020-A-2.0.0/star/chrNameLength.txt`
+* **ATAC Peak Directory**: (`config["RAW_INPUT_DIRS"]["ATAC"]`)
+    * This directory must contain three specific files, which the R script (`wstep1_cicero.R`) looks for:
+        1.  `matrix.mtx.gz`
+        2.  `barcodes.tsv.gz`
+        3.  `peaks.bed.gz`
