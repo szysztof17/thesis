@@ -19,7 +19,7 @@ def run_cicero(config, r_env_path):
     Executes the Cicero R script, including cell filtering and preprocessing.
     """
     print("--- Running Step 1: Cicero Analysis (with preprocessing) ---")
-    script_path = Path(config["base_dir"]) / "src/R/wstep1_cicero.R"
+    script_path = Path(config["base_dir"]) / "src/R/cicero_for_celloracle.R"
     output_dir = Path(config["cicero_output_dir"])
     dataset_cicero_dir = output_dir / config["dataset_name"]
     os.makedirs(dataset_cicero_dir, exist_ok=True)
