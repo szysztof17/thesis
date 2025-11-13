@@ -10,7 +10,7 @@ General structure:
 
 ## BEELINE
 
-This project is laregely based on the BEELINE framework for benchmarking of GRN inference methods, with its fork with minor changes available at [szysztof17/Beeline](https://github.com/szysztof17/Beeline), and the original from Murali group is available at [Murali-group/BEELINE](https://github.com/Murali-group/Beeline).
+This project is largely based on the BEELINE framework for benchmarking of GRN inference methods, with its fork with minor changes available at [szysztof17/Beeline](https://github.com/szysztof17/Beeline), and the original from Murali group is available at [Murali-group/BEELINE](https://github.com/Murali-group/Beeline).
 
 
 ## Some analyses
