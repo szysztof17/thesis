@@ -1,0 +1,19 @@
+
+font.family       : serif
+font.size         : 10
+axes.labelsize    : 10
+axes.titlesize    : 11
+legend.fontsize   : 7
+xtick.labelsize   : 9
+ytick.labelsize   : 9
+lines.linewidth   : 1.5
+axes.grid         : True
+grid.linestyle    : --
+grid.alpha        : 0.3
+figure.dpi        : 300
+savefig.dpi       : 300
+text.usetex       : True
+pgf.texsystem     : pdflatex
+pgf.rcfonts       : False
+figure.figsize    : 6.1, 4.2
+axes.prop_cycle   : cycler('color', ['374e55', 'aa4c7b', '00a1d5', 'b24745', '79af97', '8172b3'])
