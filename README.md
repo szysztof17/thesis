@@ -68,7 +68,7 @@ These are only needed if you're building a custom GRN and are **not** providing 
 * **Chromosome Sizes**: (`config["RAW_INPUT_DIRS"]["CHROM_SIZES"]`)
     * *Example:* `data/ARC/refdata-cellranger-arc-GRCh38-2020-A-2.0.0/star/chrNameLength.txt`
 * **ATAC Peak Directory**: (`config["RAW_INPUT_DIRS"]["ATAC"]`)
-    * This directory must contain three specific files, which the R script (`wstep1_cicero.R`) looks for:
+    * This directory must contain three specific files, which the R script (`cicero_for_celloracle.R`) looks for:
         1.  `matrix.mtx.gz`
         2.  `barcodes.tsv.gz`
         3.  `peaks.bed.gz`
