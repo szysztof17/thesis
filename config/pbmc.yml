@@ -1,0 +1,56 @@
+# === Core Paths ===
+# Absolute path to your project's root directory
+BASE_DIR: "/home/kl467102/thesis"
+# Absolute path to your R conda environment
+R_CONDA_ENV_PATH: "/home/kl467102/miniconda3/envs/cicero"
+
+
+# === Dataset and Genome ===
+DATASET_NAME: "pbmc10k"
+REF_GENOME: "hg38"
+CLUSTER_COLUMN: 'label' #none to use leiden
+
+# === Pipeline Execution Control ===
+# True:  Run Cicero & motif scan to build a GRN from your ATAC-seq data.
+# False: Skip ATAC-seq steps and use CellOracle's default promoter-based GRN.
+USE_ATAC_SEQ: False
+
+# Optional: Path to a pre-processed AnnData file (relative to BASE_DIR).
+# Set to null to run the scRNA-seq preprocessing from raw files.
+# Example: "results/my_processed_data.h5ad"
+PREPROCESSED_ADATA_PATH: "/home/kl467102/thesis/BEELINE/inputs/pbmc10k/pbmc10k_STRING12_2000TFs/adata.h5ad"
+
+# === Optional: Paths to Skip Completed ATAC Steps ===
+# Provide paths (relative to BASE_DIR) to skip parts of the ATAC workflow.
+# The pipeline will start from the latest step for which you provide a file.
+# To skip Cicero & Peak Processing -> provide PEAK_GENE_LIST_PATH.
+# To skip all ATAC steps -> provide CUSTOM_GRN_PATH.
+
+ATAC_INTERMEDIATE_PATHS:
+  PEAK_GENE_LIST: null  # e.g., "results/cicero_output/pbmc10k/pbmc10k_peak_gene_list.csv"
+  CUSTOM_GRN: "/home/kl467102/thesis/results/celloracle_output/pbmc10k/tfinfo.parquet"      # e.g., "results/celloracle_output/pbmc10k/custom_grn.parquet"
+
+
+# === ATAC-seq Parameters (only used if USE_ATAC_SEQ is True) ===
+MIN_PEAKS_PER_CELL: 1000
+MAX_PEAKS_PER_CELL: 30000
+COACCESS_THRESHOLD: 0.8
+
+
+# === scRNA-seq Parameters (only used if PREPROCESSED_ADATA_PATH is null) ===
+MIN_GENES_PER_CELL: 750
+MAX_COUNTS_PER_CELL: 12500
+PCT_MT_PER_CELL: 25
+N_TOP_HVG: 2000
+
+
+# === Raw Data Locations (relative to BASE_DIR) ===
+# These are only used if the pipeline needs to process from raw data.
+RAW_INPUT_DIRS:
+  ATAC: "data/pbmc10k/peaks_only"
+  RNA: "data/pbmc_granulocyte_sorted_10k"
+  H5: "data/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5"
+  CHROM_SIZES: "data/ARC/refdata-cellranger-arc-GRCh38-2020-A-2.0.0/star/chrNameLength.txt"
+  TF_LIST: "/home/kl467102/Beeline-238/inputs/hHep/human-tfs.csv"
+  NETWORK_FILE: "/home/kl467102/string_dir/9606_protein_links_gene_names_combined_score_700.csv"
+  NETWORK_NAME: "STRING12"
