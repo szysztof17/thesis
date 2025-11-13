@@ -24,3 +24,8 @@ cd BEELINE
 python BLRunner.py --config config-files/buenrostro18_config.yaml # and ../src/py/monitor_for_genie_output.py buenrostro18.yaml on some servers to prevent getting stuck
 python BLEvaluator.py --config config-files/buenrostro18_config.yaml --epr --auc
 ``` 
+
+## Figures
+
+Figures for the thesis are generated using scripts found in `figures/scripts`.
+
