@@ -16,4 +16,4 @@ text.usetex       : True
 pgf.texsystem     : pdflatex
 pgf.rcfonts       : False
 figure.figsize    : 6.1, 4.2
-axes.prop_cycle   : cycler('color', ['374e55', 'aa4c7b', '00a1d5', 'b24745', '79af97', '8172b3'])
+axes.prop_cycle   : cycler('color', ['374e55', 'aa4c7b', '007196', 'b24745', '79af97', '8172b3'])

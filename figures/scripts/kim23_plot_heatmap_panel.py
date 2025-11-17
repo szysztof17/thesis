@@ -92,11 +92,9 @@ def main():
     
     # === 4. Figure Setup ===
     
-    # Create a figure with 3 main columns and 1 narrow column for the colorbar
-    # Adjust figsize as needed
     fig, axes = plt.subplots(1, 3)
     
-    mappable = None # To store the mappable from the last plot
+    mappable = None 
     
     # === 5. Plotting Loop ===
     print("Generating plots...")
@@ -119,16 +117,7 @@ def main():
         if i > 0:
             ax.set_ylabel("")
             
-    # === 6. Add Shared Colorbar ===
-    
-    # After the loop, 'mappable' holds the artist from the last plot.
-    # # We use it to create one colorbar for all plots.
-    # if mappable:
-    #     cbar_ax = fig.add_subplot(gs[0, 3])
-    #     fig.colorbar(mappable, cax=cbar_ax, label="AUROC")
-    
-    # === 7. Final Touches and Saving ===
-    
+
     fig.suptitle("AUROC Consistency Across Methods (Downsampling)")
 
     set_figure_width(aspect_ratio=2.25)

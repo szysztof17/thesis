@@ -43,7 +43,8 @@ def get_method_color(method_name):
 # === Matplotlib style ===
 def load_custom_style():
     sns.set_style("whitegrid")
-    plt.style.use(Path(__file__).parent / "../plt_params.mplstyle")
+    path = Path(__file__).parent.parent / "plt_params.mplstyle"
+    plt.style.use(str(path))
 
     color_cycle = mpl.rcParams['axes.prop_cycle'].by_key()['color']
 
