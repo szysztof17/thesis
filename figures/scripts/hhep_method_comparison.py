@@ -7,7 +7,7 @@ from pathlib import Path
 from plot_utils import figures, figure_width, load_custom_style, set_figure_width
 
 # === Load style and config ===
-load_custom_style()
+load_custom_style(colours = 'one')
 
 # === File paths ===
 base_name = "hhep_methods_comparison"
@@ -52,8 +52,8 @@ for ax, (gene_count, group) in zip(axes, gene_groups):
     x = range(len(group))
     width = 0.25
 
-    ax.bar([i - width for i in x], group['hhep1000Net'], width=width, label='1000+TFs Net')
-    ax.bar(x, group['hhep500Net'], width=width, label='500+TFs Net')
+    ax.bar([i - width for i in x], group['1000TFsNet'], width=width, label='1000+TFs Net')
+    ax.bar(x, group['500TFsNet'], width=width, label='500+TFs Net')
     ax.bar([i + width for i in x], group['minimalNet'], width=width, label='minimalNet')
 
     ax.set_title(f'Number of genes: {gene_count.replace('TFs','')} + TFs ({int(gene_count.replace('TFs','')) + 448})')

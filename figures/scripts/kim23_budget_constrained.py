@@ -8,7 +8,7 @@ import seaborn as sns
 from pathlib import Path
 from plot_utils import figures, figure_width, load_custom_style, set_figure_width, get_hue_palette 
 import numpy as np
-
+from matplotlib.ticker import PercentFormatter
 
 # === Load style and config ===
 load_custom_style()
@@ -48,8 +48,8 @@ sns.lineplot(
     palette=palette,   # A color-blind friendly palette
     linewidth=2
 )
-plt.title('Mean Performance vs. Sequencing Strategy')
-plt.xlabel('Strategy (0 = Depth-First, 100 = Cells-First)')
+plt.title('Mean performance vs. sequencing strategy')
+plt.xlabel('Strategy (0 = Depth-first, 100 = Cells-first)')
 plt.ylabel('Mean AUROC')
 plt.legend(title='Budget')
 set_figure_width(aspect_ratio = 2)
@@ -75,10 +75,11 @@ g = sns.relplot(
     linewidth=1,
     markersize = 4
 )
-
-g.fig.suptitle('Method Performance vs. Strategy Across Different Budgets')#, y=1.03)
+for ax in g.axes.flatten():
+    ax.xaxis.set_major_formatter(PercentFormatter(xmax=100, decimals=0))
+g.fig.suptitle('Method performance vs. sequencing strategy across budgets')#, y=1.03)
 g.set_axis_labels("", "AUROC") # Clear individual labels first
-g.fig.text(0.5, -0.01, r'Strategy (0\% = Depth-First, 100\% = Cells-First)', ha='center', va='bottom')
+g.fig.text(0.5, -0.01, r'Strategy (0\% = Depth-first, 100\% = Cells-first)', ha='center', va='bottom')
 
 g._legend.set_bbox_to_anchor((1, 0.2))
 

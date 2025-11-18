@@ -12,7 +12,7 @@ import numpy as np
 # === Load style and config ===
 load_custom_style()
 
-palette = get_hue_palette(6)
+palette = get_hue_palette(6, style = 'two')
 
 # === File paths ===
 base_name = "cross_dataset_auroc"
@@ -57,11 +57,11 @@ for i, dataset in enumerate(entries.keys()):
     bar_positions = x + (i - 0.5) * width
     bars = ax.bar(bar_positions, medians, width=width,
                   yerr=[err_low, err_high], capsize=6,
-                  label=dataset, color=palette[i+3])
+                  label=dataset, color=palette[i])
 
     # Add value labels on top of each bar
     for xpos, value in zip(bar_positions, medians):
-        ax.text(xpos, value + 0.015, f"{value:.3f}",
+        ax.text(xpos, value + 0.03, f"{value:.3f}",
                 ha='center', va='bottom', fontsize=9)
 
 ax.set_xticks(x)

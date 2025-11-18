@@ -31,6 +31,10 @@ palette = dict(zip(all_mt_values, colors))
 
 palette2 = get_hue_palette(len(all_mt_values) + len(set(df_percentile1["filter_type"])))
 palette2 = palette2[len(all_mt_values):]
+
+
+palette = get_hue_palette(style='one')
+palette2 = get_hue_palette(style='two')
 fig, axes = plt.subplots(1, 3)  
 
 # === PLOT 1: Percentile-based filtering ===

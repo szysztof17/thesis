@@ -11,7 +11,7 @@ import numpy as np
 
 
 # === Load style and config ===
-load_custom_style()
+load_custom_style(colours = 'one')
 
 # === File paths ===
 base_name = "cross_dataset_auroc"
@@ -68,7 +68,7 @@ for ax, tf_size in zip(axes, tf_sizes):
     ax.set_ylim(0.5, 1)
 
 axes[0].legend()
-plt.suptitle("AUROC on In-Dataset vs Cross-Dataset Networks")
+plt.suptitle("AUROC on in-Dataset vs cross-dataset networks")
 plt.tight_layout()
 plt.show()
 

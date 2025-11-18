@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from plot_utils import load_custom_style, set_figure_width
 
 # === Load style ===
-load_custom_style()
+load_custom_style(colours = 'one')
 
 # === File paths ===
 csv_path = "../data/HVG_cutoff_kim_hhep.csv"

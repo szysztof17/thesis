@@ -50,6 +50,34 @@ def load_custom_style():
 
     sns.set_palette(color_cycle)
 
+
+def load_custom_style(colours='default'):
+    """
+    Loads the mplstyle and enforces a specific color palette.
+    palette_style: 'default', 'one', or 'two'
+    """
+    # 1. Reset to base style from file
+    sns.set_style("whitegrid")
+    path = Path(__file__).parent.parent / "plt_params.mplstyle"
+    plt.style.use(str(path))
+
+    # 2. If a specific palette is requested, overwrite the global cycle
+    if colours != 'default':
+        # Get the specific colors
+        new_colors = get_hue_palette(style=colours)
+        
+        # Set Matplotlib global cycle
+        mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=new_colors)
+        
+        # Set Seaborn global palette
+        sns.set_palette(new_colors)
+    else:
+        # Just ensure seaborn matches the loaded mplstyle
+        color_cycle = mpl.rcParams['axes.prop_cycle'].by_key()['color']
+        sns.set_palette(color_cycle)
+
+
+
 def get_hue_palette(n=None):
     """
     Returns the custom palette defined by the 'axes.prop_cycle' in the mplstyle.
@@ -59,6 +87,28 @@ def get_hue_palette(n=None):
         return palette[:n]
     else:
         return mpl.rcParams['axes.prop_cycle'].by_key()['color'] #
+
+def get_hue_palette(n=None, style='default'):
+    """
+    Returns a palette based on the style argument.
+    style: 'default' (uses rcParams), 'secondary', or 'diverging'
+    """
+    
+    # Define your specific custom lists here
+    custom_palettes = {
+        'default': mpl.rcParams['axes.prop_cycle'].by_key()['color'],
+        'one': ['#fe5f00', '#988f2a', '#6a5837', '#322f20'], 
+        'two': ['#750d37', '#6d9f71', '#bc8034', '#d65f5f']      
+    }
+
+    # Retrieve the requested palette, fallback to default if not found
+    palette = custom_palettes.get(style, custom_palettes['default'])
+
+    if n:
+        return palette[:n]
+    else:
+        return palette
+
 
 
 # === Set figure width helper ===
