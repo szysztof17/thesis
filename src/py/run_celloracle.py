@@ -97,12 +97,12 @@ def preprocess_scrna(config, qc_params):
 
     sc.pp.filter_genes(adata, min_cells=20)
     print(f"Data shape after filtering: {adata.shape}")
+    adata.raw = adata.copy()
+    adata.layers['counts']=adata.X.copy() 
 
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
     sc.pp.highly_variable_genes(adata, n_top_genes=qc_params["n_top_hvg"])
-    adata.raw = adata.copy()
-    adata.layers['counts']=adata.X.copy() 
 
     
     sc.pp.neighbors(adata_hvg, n_neighbors=10, n_pcs=40)
@@ -202,8 +202,13 @@ def run_celloracle(config, adata_path, base_grn):
     os.makedirs(output_dir, exist_ok=True)
     cluster_column = config["cluster_column"] if config["cluster_column"] else 'leiden'
     adata = sc.read_h5ad(adata_path)
+    if "counts" in adata.layers:
+        print("Loading raw counts from adata.layers['counts'] into adata.X...")
+        adata.X = adata.layers["counts"].copy()
+    else:
+        print("WARNING: 'counts' layer not found. Using adata.X (ensure this is raw data!)")
     oracle = co.Oracle()
-    oracle.import_anndata_as_raw_count(adata=adata, cluster_column_name="leiden", embedding_name="X_umap")
+    oracle.import_anndata_as_raw_count(adata=adata, cluster_column_name=cluster_column, embedding_name="X_umap")
     
     oracle.import_TF_data(TF_info_matrix=base_grn)
 
