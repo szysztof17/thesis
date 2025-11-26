@@ -17,6 +17,8 @@ This project is largely based on the BEELINE framework for benchmarking of GRN i
 
 Files named step 1, 2, 3 in `src/jupyter/` are Jupyter notebooks that perform the main analyses as showcased on Buenrostro 2018 data. Each notebook contains a short description of its purpose.
 
+We also included notebooks showcasing key steps in the analysis for the PBMC10k data. Please refer to `src/jupyter/` and files named `pbmc_step_X.ipynb` for details.
+
 As a result we obtain a number of datasets prepared for BEELINE analysis, and next step would be (after adjusting the config file to fit our purpose), to:
 
 ```
