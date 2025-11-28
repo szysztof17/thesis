@@ -4,6 +4,7 @@ import pandas as pd
 import scipy
 import scanpy as sc
 import time
+from pathlib import Path
 
 from LingerGRN.preprocess import *
 from LingerGRN.pseudo_bulk import *
@@ -19,6 +20,8 @@ def parse_args():
     parser.add_argument('--label_file', type=str, help="Path to cell-type annotations file (default: 'label.txt' in the input directory)")
     parser.add_argument('--Datadir', type=str, required=True, help="Directory for the downloaded general gene regulatory network")
     parser.add_argument('--genome', type=str, required=True, choices=['hg38', 'mm10'], help="Genome version (hg38 or mm10)")
+    parser.add_argument('--beeline_path', type=str, required=True, help="Directory to save output network for BEELINE")
+    parser.add_argument('--dataset_name', type=str, required=True, help="Dataset for output")
 
     # Optional arguments
     parser.add_argument('--method', type=str, default='LINGER', help="Method for GRN analysis (default: LINGER)")
@@ -155,6 +158,23 @@ def main():
     # Final message with total elapsed time
     total_time = log_time(start_time, "LINGER analysis")
     print(f"Total time taken for the analysis: {total_time:.2f} seconds.")
+
+
+    # step 5 - arse the network
+
+    linger_output = pd.read_csv(f'{outdir}/cell_population_trans_regulatory.txt', index_col = 0,  sep = '\t')
+    resulst_long = linger_output.melt(var_name='Source', value_name='EdgeWeight', ignore_index=False).reset_index().rename(columns={'index':'Target'})
+    resulst_long = resulst_long[['Target', 'Source', 'EdgeWeight']]
+    beeline_dir = args.beeline_path
+    dataset_name = args.dataset_name
+    beeline_dir = Path(beeline_dir)
+    beeline_inputs_dir = beeline_dir / 'inputs' / dataset_name
+    beeline_outputs_dir = beeline_dir / 'outputs' / dataset_name
+    resulst_long.sort_values(by='EdgeWeight', inplace=True, ascending = False)
+    resulst_long.reset_index(drop=True, inplace=True)
+    resulst_long.columns = ['Gene1','Gene2','EdgeWeight']
+    resulst_long.to_csv(beeline_outputs_dir / "rankedEdges.csv", index=False, sep = '\t')
+
 
 if __name__ == "__main__":
     main()
