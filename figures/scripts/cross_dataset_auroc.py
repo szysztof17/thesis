@@ -62,7 +62,14 @@ for ax, tf_size in zip(axes, tf_sizes):
     ax.bar(x + width/2, cross_medians, width, yerr=cross_errors, capsize=5, label='Cross network')
 
     ax.set_xticks(x)
-    ax.set_xticklabels(datasets)
+    custom_labels = {
+        'kim23-hm1': 'Kim23-hm1',
+        'hhep': 'hHep'
+    }
+    
+    ax.set_xticklabels([custom_labels.get(ds, ds) for ds in datasets])
+
+
     ax.set_title(tf_size.replace("TFs", " + TFs"))
     ax.set_ylabel("AUROC")
     ax.set_ylim(0.5, 1)

@@ -55,7 +55,7 @@ for method, auroc_value in baseline_auroc.items():
         )
 
 
-plt.title("Effect of average cluster size (k) on AUROC [kim23 data]")
+plt.title("Effect of average cluster size (k) on AUROC [Kim23 data]")
 plt.xlabel("Average cluster size (k) [log scale]")
 plt.ylabel("AUROC")
 #plt.ylim((0.7,0.8))

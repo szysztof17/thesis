@@ -32,7 +32,10 @@ entries = {
     }
 }
 
-
+legend_labels = {
+    "hhep": "hHep",
+    "kim23-hm1-extgenes": "Kim23-hm1-extgenes" 
+}
 
 # Prepare data
 sizes = ["500", "1000"]
@@ -57,7 +60,7 @@ for i, dataset in enumerate(entries.keys()):
     bar_positions = x + (i - 0.5) * width
     bars = ax.bar(bar_positions, medians, width=width,
                   yerr=[err_low, err_high], capsize=6,
-                  label=dataset, color=palette[i])
+                  label=legend_labels.get(dataset, dataset), color=palette[i])
 
     # Add value labels on top of each bar
     for xpos, value in zip(bar_positions, medians):
@@ -69,7 +72,7 @@ ax.set_xticklabels(sizes)
 ax.set_ylabel("AUROC")
 ax.set_xlabel("Gene set size")
 ax.set_ylim(0.5, 1)
-ax.set_title("AUROC on shared gene set (hhep-based)")
+ax.set_title("AUROC on shared gene set (hHep-based)")
 ax.legend(title="Dataset")
 
 set_figure_width(aspect_ratio=1, n_per_page=2)

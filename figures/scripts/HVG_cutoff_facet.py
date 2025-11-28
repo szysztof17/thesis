@@ -21,7 +21,7 @@ df_kim = df[df['Dataset']=='kim23-hm1'].sort_values(by = "Network")
 fig, axes = plt.subplots(1, 2)  
 
 sns.lineplot(x='NumberOfGenes', y='AUROC', data=df_hhep, marker='o', hue='Network', ax = axes[0]) 
-axes[0].set_title("hhep")
+axes[0].set_title("hHep")
 axes[0].set_xlabel("Number of genes")
 axes[0].set_ylabel("AUROC")
 axes[0].legend(title=r"Ref. network", fontsize='small')
@@ -29,7 +29,7 @@ axes[0].legend(title=r"Ref. network", fontsize='small')
 
 
 sns.lineplot(x='NumberOfGenes', y='AUROC', data=df_kim, marker='o', hue='Network', ax = axes[1]) 
-axes[1].set_title("kim23")
+axes[1].set_title("Kim23")
 axes[1].set_xlabel("Number of genes")
 axes[1].set_ylabel("AUROC")
 axes[1].legend(title=r"Ref. network", fontsize='small')
