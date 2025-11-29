@@ -1,0 +1,24 @@
+name: co_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - click
+  - cython
+  - h5py
+  - llvm
+  - louvain
+  - matplotlib
+  - numba
+  - numpy
+  - pysam
+  - scikit-learn
+  - scipy
+  - scanpy
+  - pybedtools
+  - gimmemotifs=0.17.2
+  - ipykernel
+  - scikit-image
+

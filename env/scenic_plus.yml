@@ -1,0 +1,14 @@
+name: scenic_plus
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11.8
+  - ipykernel
+  - ipywidgets
+  - jupyter
+  - jupyterlab
+  - pip:
+    - git+https://github.com/aertslab/scenicplus.git@e2b2950bda05c002e06b884b56bc2c15e3d778bf
+  

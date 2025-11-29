@@ -1,0 +1,35 @@
+name: cicero
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyter
+  - r-base
+  - r-essentials
+  - r-sf
+  - r-igraph
+  - cairo
+  - r-cairo
+  - xorg-libx11
+  - libx11-devel-cos7-x86_64
+  - r-rcurl
+  - r-leidenbase
+  - liblzma-devel
+  - bioconductor-rsamtools
+  - bioconductor-gviz
+  - r-arrow
+  - r-doparallel
+  - r-dosnow
+  - r-foreach
+  - r-truncnorm
+  - r-vgam
+  - r-reticulate
+  - anndata
+
+
+###those need to  be installed in R
+# install.packages("devtools")
+# devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
+
+

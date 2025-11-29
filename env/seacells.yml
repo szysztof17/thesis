@@ -1,0 +1,16 @@
+name: seacells
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cython
+  - python=3.8
+  - jupyter
+  - ruamel
+  - ruamel.yaml
+  - pip
+  - pip:
+      - git+https://github.com/settylab/Palantir@removeTSNE
+      - git+https://github.com/dpeerlab/SEACells.git@e2b2950bda05c002e06b884b56bc2c15e3d778bf

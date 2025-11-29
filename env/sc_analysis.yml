@@ -1,0 +1,14 @@
+name: sc_analysis
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.13
+  - ipykernel
+  - jupyterlab
+  - scanpy
+  - upsetplot
+  - ipywidgets
+  - plotly
+  - ruamel.yaml
