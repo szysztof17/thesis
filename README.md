@@ -40,9 +40,9 @@ python BLEvaluator.py --config config-files/buenrostro18_config.yaml --epr --auc
 
 Figures for the thesis are generated using scripts found in `figures/scripts`.
 
-## CellOracle wrapper
+## CellOracle wrapper (env: `co_env`)
 
-(and SCENIC+ wrapper included as `run_scenicplus.py`)
+(and SCENIC+ wrapper included as `run_scenicplus.py`, env: `scenic_plus`)
 
 ### 1. Code & Config Files
 
